@@ -1,0 +1,68 @@
+name: Build AMXX Module
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  pull_request:
+    branches: [ "main", "master" ]
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+    name: Build for Windows (x86)
+
+    steps:
+    - name: Checkout bcrypt repository
+      uses: actions/checkout@v4
+      with:
+        path: bcrypt
+
+    - name: Checkout AMX Mod X repository for includes
+      uses: actions/checkout@v4
+      with:
+        repository: alliedmodders/amxmodx
+        path: amxmodx
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Build with MSBuild
+      working-directory: ./bcrypt
+      run: msbuild amxx_bcrypt.sln /p:Configuration=Release /p:Platform=x86
+
+    - name: Upload Windows Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: bcrypt_amxx-windows
+        path: bcrypt/Release/bcrypt_amxx.dll
+
+  build-linux:
+    runs-on: ubuntu-latest
+    name: Build for Linux (x86)
+
+    steps:
+    - name: Checkout bcrypt repository
+      uses: actions/checkout@v4
+      with:
+        path: bcrypt
+
+    - name: Checkout AMX Mod X repository for includes
+      uses: actions/checkout@v4
+      with:
+        repository: alliedmodders/amxmodx
+        path: amxmodx
+        
+    - name: Install build dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y g++-multilib build-essential
+
+    - name: Build with Makefile
+      working-directory: ./bcrypt
+      run: make
+
+    - name: Upload Linux Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: bcrypt_amxx-linux
+        path: bcrypt/bcrypt_amxx_i386.so

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="sdk">
+      <UniqueIdentifier>{b6f75c08-117d-4c50-b561-309cfb57dd7c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="bcrypt_lib">
+      <UniqueIdentifier>{c187de17-6787-417e-97a0-5d702c1b9696}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="amxx_bcrypt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sdk\amxxmodule.cpp">
+      <Filter>sdk</Filter>
+    </ClCompile>
+    <ClCompile Include="bcrypt_lib\bcrypt.cpp">
+      <Filter>bcrypt_lib</Filter>
+    </ClCompile>
+    <ClCompile Include="bcrypt_lib\blowfish.cpp">
+      <Filter>bcrypt_lib</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="amxx_bcrypt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\amxxmodule.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="sdk\moduleconfig.h">
+      <Filter>sdk</Filter>
+    </ClInclude>
+    <ClInclude Include="bcrypt_lib\bcrypt.h">
+      <Filter>bcrypt_lib</Filter>
+    </ClInclude>
+    <ClInclude Include="bcrypt_lib\node_blf.h">
+      <Filter>bcrypt_lib</Filter>
+    </ClInclude>
+    <ClInclude Include="bcrypt_lib\openbsd.h">
+      <Filter>bcrypt_lib</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
