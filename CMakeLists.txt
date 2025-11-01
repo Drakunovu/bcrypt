@@ -25,6 +25,8 @@ set(PROJECT_SOURCES
 
 add_library(amxx_bcrypt SHARED ${PROJECT_SOURCES})
 
+target_compile_definitions(amxx_bcrypt PRIVATE HAVE_STDINT_H)
+
 if(WIN32)
     set_target_properties(amxx_bcrypt PROPERTIES OUTPUT_NAME "bcrypt_amxx")
     target_compile_definitions(amxx_bcrypt PRIVATE _CRT_SECURE_NO_WARNINGS)
