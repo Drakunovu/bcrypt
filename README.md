@@ -44,19 +44,41 @@ Verifies a plain-text password against a bcrypt hash.
 
 ## Building from Source
 
-### Windows
--   A Visual Studio solution (`.sln`) is provided.
--   Open it in Visual Studio 2022 or later.
--   In Project Properties -> General, set the **Target Name** to `bcrypt_amxx`.
--   Set the build configuration to **Release | Win32**.
--   Build the solution. The output DLL will be in the `Release` directory.
+This project uses CMake to build on both Windows and Linux.
 
-### Linux
--   A `Makefile` is provided.
--   Ensure you have `g++` and `make` installed (and `g++-multilib` if on a 64-bit system).
--   Navigate to the project root directory and run:
+### Prerequisites
 
+* [Git](https://git-scm.com/)
+* [CMake](https://cmake.org/download/) (3.10 or higher)
+* **Windows**: [Visual Studio 2017](https://visualstudio.microsoft.com/vs/older-downloads/) or later (with "Desktop development with C++" workload)
+* **Linux**: `g++-multilib` and `build-essential` (`sudo apt-get install g++-multilib build-essential cmake`)
+### Steps
+
+1.  **Clone the repository and submodules:**
     ```bash
-    make
+    git clone [https://github.com/Drakunovu/bcrypt.git](https://github.com/Drakunovu/bcrypt.git)
+    cd bcrypt
+    git submodule update --init --recursive
     ```
--   This will produce the `bcrypt_amxx_i386.so` binary.
+
+2.  **Configure with CMake:**
+
+    * **On Windows (for 32-bit DLL):**
+        ```bash
+        cmake -B build -G "Visual Studio 17 2022" -A Win32
+        ```
+        *(Adjust "Visual Studio 17 2022" to your VS version if needed)*
+
+    * **On Linux (for 32-bit .so):**
+        ```bash
+        cmake -B build -DCMAKE_BUILD_TYPE=Release
+        ```
+
+3.  **Build the module:**
+    ```bash
+    cmake --build build --config Release
+    ```
+
+4.  **Find the binary:**
+    * **Windows:** `build/Release/bcrypt_amxx.dll`
+    * **Linux:** `build/bcrypt_amxx_i386.so`
